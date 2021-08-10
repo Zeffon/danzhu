@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: prod
+  jpa:
+    hibernate:
+      ddl-auto: none
+  es:
+    host: 127.0.0.1
+    port: 9200
+    connTimeout: 3000
+    socketTimeout: 5000
+    connectionRequestTimeout: 1000
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    password: 123456
+    listen-pattern: __keyevent@3__:expired
+  jackson:
+    # 设置属性命名策略,对应jackson下PropertyNamingStrategy中的常量值，SNAKE_CASE-返回的json驼峰式转下划线，json body下划线传到后端自动转驼峰式
+    property-naming-strategy: SNAKE_CASE
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true # 返回时间格式自动转换成时间戳
+
+danzhu:
+  api-package: com.zeffon.danzhu.api
+  year-codes: A,B,C,D,E,F,G,H,I,J,K,L
+  link-url: https://www.zeffon.cn/link?s=
+
+wx:
+  appid: wx423525d11111111111
+  appsecret: fgdf7ef27c1g9sdgf6a9091111111111
+  code2session: https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code
+  accessToken: https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}
+  token2wxa: https://api.weixin.qq.com/wxa/getwxacodeunlimit?access_token={0}
+
+aliyun:
+  oss:
+    endpoint: danzhu2020.oss-cn-guangzhou.aliyuncs.com # oss对外服务的访问域名
+    accessKeyId: LTAI4GHMab1111111111111 # 访问身份验证中用到用户标识
+    accessKeySecret: g9P2nisx6MxSuw8Du11111111111111 # 用户用于加密签名字符串和oss用来验证签名字符串的密钥
+    bucketName: danzhu2020 # oss的存储空间
+    policy:
+      expires: 180 # 签名有效期(S)
+    maxSize: 10 # 上传文件大小(M)
+    callback: http://tjds2e.natappfree.cc/danzhu/v1/oss/callback # 文件上传成功后的回调地址
+    dir:
+      prefix: danzhu/ # 上传文件夹路径前缀

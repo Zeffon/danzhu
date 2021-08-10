@@ -1,0 +1,25 @@
+server:
+  port: 8085
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/danzhu?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+
+danzhu:
+  security:
+    jwt-key: zeffonwu
+    token-expired-in: 604800 # 7*24*60*60
+
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: false
