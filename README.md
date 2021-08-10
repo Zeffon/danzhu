@@ -21,3 +21,6 @@ $ scp ./target/*.jar root@xx.xxx.xx.xx:/app
 ```sh
 $ nohup java -jar /app/danzhu-*.jar > /logs/danzhu.log 2>&1 &
 ```
+
+## 声明
+该源码仅供学习，不可用于任何商业用途。
