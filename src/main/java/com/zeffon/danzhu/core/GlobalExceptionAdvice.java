@@ -45,14 +45,17 @@ public class GlobalExceptionAdvice {
     public ResponseEntity<UnifyResponse> handleHttpException(HttpServletRequest req, HttpException e) {
         String requestUrl = req.getRequestURI();
         String method = req.getMethod();
-
-        UnifyResponse message = new UnifyResponse(e.getCode(), codeConfiguration.getMessage(e.getCode()), method + " " + requestUrl);
+        UnifyResponse message;
+        if (e.getCode() == null) {
+            message = new UnifyResponse(0, e.getMessage(), method + " " + requestUrl);
+        } else {
+            message = new UnifyResponse(e.getCode(), codeConfiguration.getMessage(e.getCode()), method + " " + requestUrl);
+        }
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpStatus httpStatus = HttpStatus.resolve(e.getHttpStatusCode());
 
-        ResponseEntity<UnifyResponse> r = new ResponseEntity<>(message, headers, httpStatus);
-        return r;
+        return new ResponseEntity<>(message, headers, httpStatus);
     }
 
     // 处理body里的参数异常

@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public class HttpException extends RuntimeException {
     protected Integer code;
+    protected String message;
     protected Integer httpStatusCode = 500;
 
 }
